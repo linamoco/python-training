@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from contact import Contact
+from model.contact import Contact
 from contact_application import Application
+from fixture.application import Application
 @pytest.fixture
 def app(request):
     fixture = Application()                # создаем фикстуру
@@ -33,9 +34,9 @@ def test_add_contact(app):
                        secondary_address="sec_addr1",
                        secondary_home="sec_home1",
                        secondary_notes="sec_notes1")
-    app.login(username="admin", password="secret")
-    app.create_user(contact1)
-    app.logout()
+    app.session.login(username="admin", password="secret")
+    app.contact.create(contact1)
+    app.session.logout()
 
 
 
