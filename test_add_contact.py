@@ -6,7 +6,7 @@ from contact_application import Application
 @pytest.fixture
 def app(request):
     fixture = Application()                # создаем фикстуру
-    request.addfinalizer(fixture.destroy)  # удаляем фикустуру с помощью функции инициализации фикстуры
+    request.addfinalizer(fixture.destroy)  # удаляем фикстуру с помощью функции инициализации фикстуры
     return fixture
 def test_add_contact(app):
     contact1 = Contact(first_name="f_name1",
