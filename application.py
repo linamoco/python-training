@@ -2,7 +2,7 @@ from selenium import webdriver
 from group import Group
 class Application:
 
-    def __int__(self):
+    def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
@@ -50,11 +50,6 @@ class Application:
     def logout(self):
         wd = self.wd
         wd.find_element_by_link_text("Logout").click()
-
-    def test_add_group(self):
-        self.login(username="admin", password="secret")
-        self.create_group(Group(name="dfdfdf", header="dfdfdfd", footer="dffdf"))
-        self.logout()
 
     def destroy(self):
         self.wd.quit()
