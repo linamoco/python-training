@@ -12,6 +12,15 @@ class TestAddContact(unittest.TestCase):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
+    def open_home_page(self, wd):
+        wd.get("http://localhost/addressbook/index.php")
+    def login(self, wd):
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys("secret")
+        wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def fill_field(self, wd, name_element, text):
         wd.find_element_by_name(name_element).click()
@@ -48,19 +57,12 @@ class TestAddContact(unittest.TestCase):
         self.fill_field(wd, "address2", contact.secondary_address)
         self.fill_field(wd, "phone2", contact.secondary_home)
         self.fill_field(wd, "notes", contact.secondary_notes)
-        # submit contact creation
+
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def login(self, wd):
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
-        wd.find_element_by_xpath("//input[@value='Login']").click()
+    def logout(self, wd):
+        wd.find_element_by_link_text("Logout").click()
 
-    def open_home_page(self, wd):
-        wd.get("http://localhost/addressbook/index.php")
     def test_add_contact(self):
         wd = self.wd
         self.open_home_page(wd)
@@ -90,8 +92,7 @@ class TestAddContact(unittest.TestCase):
                            secondary_home="sec_home1",
                            secondary_notes="sec_notes1")
         self.create_user(wd, contact1)
-        wd.find_element_by_link_text("home page").click()
-        wd.find_element_by_link_text("Logout").click()
+        self.logout(wd)
     def is_element_present(self, how, what):
         try:
             self.wd.find_element(by=how, value=what)
