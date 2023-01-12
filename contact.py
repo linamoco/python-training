@@ -30,4 +30,5 @@ class Contact:
         self.secondary_address = secondary_address
         self.secondary_home = secondary_home
         self.secondary_notes = secondary_notes
+        #
 

@@ -93,6 +93,7 @@ class TestAddContact(unittest.TestCase):
                            secondary_notes="sec_notes1")
         self.create_user(wd, contact1)
         self.logout(wd)
+        #
     def is_element_present(self, how, what):
         try:
             self.wd.find_element(by=how, value=what)
