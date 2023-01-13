@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 
 class ContactHelper:
 
@@ -41,4 +41,6 @@ class ContactHelper:
         self.fill_field("notes", contact.secondary_notes)
         # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+
 

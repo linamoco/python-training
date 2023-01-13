@@ -2,7 +2,6 @@
 
 import pytest
 from model.contact import Contact
-from contact_application import Application
 from fixture.application import Application
 @pytest.fixture
 def app(request):
@@ -36,6 +35,7 @@ def test_add_contact(app):
                        secondary_notes="sec_notes1")
     app.session.login(username="admin", password="secret")
     app.contact.create(contact1)
+    app.open_home_page()
     app.session.logout()
 
 

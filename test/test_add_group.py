@@ -6,7 +6,7 @@ from fixture.application import Application
 @pytest.fixture
 def app(request):
     fixture = Application()                # создаем фикстуру
-    request.addfinalizer(fixture.destroy)  # удаляем фикустуру с помощью функции инициализации фикстуры
+    request.addfinalizer(fixture.destroy)  # удаляем фикстуру с помощью функции инициализации фикстуры
     return fixture
 
 def test_add_group(app):
