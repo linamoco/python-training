@@ -1,13 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import pytest
 from model.contact import Contact
-from fixture.application import Application
-@pytest.fixture
-def app(request):
-    fixture = Application()                # создаем фикстуру
-    request.addfinalizer(fixture.destroy)  # удаляем фикстуру с помощью функции инициализации фикстуры
-    return fixture
+
 def test_add_contact(app):
     contact1 = Contact(first_name="f_name1",
                        middle_name="m_name1",
@@ -37,6 +31,7 @@ def test_add_contact(app):
     app.contact.create(contact1)
     app.open_home_page()
     app.session.logout()
+
 
 
 
