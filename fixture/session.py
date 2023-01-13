@@ -17,4 +17,8 @@ class SessionHelper:
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_link_text("Logout").click()
+        # добавила поиск по данным со стартовой страницы
+        # так как драйвер не успевает разлогиниться, а где и как поставить wait я не поняла
+        wd.find_element_by_name("user")
+        wd.find_element_by_name("pass")
 
